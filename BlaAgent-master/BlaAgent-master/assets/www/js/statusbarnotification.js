@@ -26,8 +26,6 @@
 */
 
 var cordovaRef = window.PhoneGap || window.Cordova || window.cordova; // old to new fallbacks
-var typeOfMessage;
-var type = typeOfMessage;
 
 /** 
  * Flags to denote the Android Notification constants
@@ -53,7 +51,6 @@ NotificationMessenger.prototype.notify = function(title, body, flag, typeOfMessa
             flag: flag,
             typeOfMessage: typeOfMessage
         });
-        console.log("Vi kommer till .notify med typeOfMessage");
     }
 }
 
@@ -77,7 +74,6 @@ if (!window.plugins.statusBarNotification) window.plugins.statusBarNotification 
  * This API should be used for new applications instead of the old plugin API above.
  */
 if (typeof window.Notification == 'undefined') {
-    console.log("Notification == undefined");
 
     /**
      * Creates and shows a new notification.
@@ -112,7 +108,6 @@ if (typeof window.Notification == 'undefined') {
                 this.onerror(error);
             }
         }, 'StatusBarNotification', 'notify', [this.tag, title, content, flag, type]);
-        console.log("Skickat typeOfMessage");
     };
 
     // Permission is always granted on Android.
@@ -124,10 +119,8 @@ if (typeof window.Notification == 'undefined') {
 
     // Not part of the W3C API. Used by the native side to call onclick handlers.
     window.Notification.callOnclickByTag = function(tag) {
-        console.log('callOnclickByTag');
         var notification = window.Notification.active[tag];
         if (notification && notification.onclick && typeof notification.onclick == 'function') {
-            console.log('inside if');
             notification.onclick();
         }
     };

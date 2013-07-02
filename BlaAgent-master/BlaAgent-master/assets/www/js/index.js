@@ -46,27 +46,32 @@ var app = {
 
         listeningElement.setAttribute('style', 'display:none;');
         receivedElement.setAttribute('style', 'display:block;');
-
-        console.log('Received Event: ' + id);
     }
 };
+
+
+var startTime = "";
+var stopTime = "16:00";
+var currentTime = "";
+var minLeft = "15";
+var assTitle = "Vattenfall AB";
+
+var notifyTitle = "REMINDER: " + minLeft + " min left";
+var notifyBody = "Deadline: " + stopTime;
+var flag = "";
 
 function sendNotify(typeOfMessage) {
     switch(typeOfMessage) {
         case 1:
-            console.log("typeOfMessage: " + typeOfMessage);
-            window.plugins.statusBarNotification.notify("INFO", "Alex är bäst!!!", "", typeOfMessage);       
+            console.log(notifyTitle);
+            window.plugins.statusBarNotification.notify(notifyTitle, notifyBody, flag, typeOfMessage);
           break;
         case 2:
-            console.log("typeOfMessage: " + typeOfMessage);
-            window.plugins.statusBarNotification.notify("WARNING", "Alex är bäst!!!", "", typeOfMessage);
+            window.plugins.statusBarNotification.notify("WARNING", "Alex är bäst!!!", flag, typeOfMessage);
           break;
         case 3:
-            console.log("typeOfMessage: " + typeOfMessage);
-            window.plugins.statusBarNotification.notify("ERROR", "Alex är bäst!!!", "", typeOfMessage);
+            window.plugins.statusBarNotification.notify("ERROR", "Alex är bäst!!!", flag, typeOfMessage);
           break;
     }
 }
 
-/* Nästa uppgift:
-    Skriva ut typeOfMessage i notifieringen i telefonen.*/
